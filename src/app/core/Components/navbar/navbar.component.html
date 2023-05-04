@@ -1,20 +1,24 @@
-<div class="navbar">
-  <mat-toolbar color="primary">
-    <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>My App</span>
+<div class="container">
+  <mat-toolbar class="toolbar" color="primary">
+    <button mat-button (click)="drawer.toggle()"><mat-icon>list</mat-icon></button>
     <span class="example-spacer"></span>
-    <a mat-button routerLink="">Home</a>
+    <span>Revision</span>
+    <span class="example-spacer"></span>
+    <button mat-button><mat-icon>logout</mat-icon></button>
   </mat-toolbar>
-  <mat-drawer-container class="example-container">
-    <mat-drawer #drawer mode="side" opened>
-      <mat-nav-list>
-        <a mat-list-item routerLink="">Dashboard</a>
+  <mat-drawer-container class="example-container" fixedviewport="true" autosize>
+    <mat-drawer #drawer fxLayout="column" [mode]='mode' opened="true">
+      <mat-nav-list fxLayout="column" fxLayoutGap="10px">
+        <mat-list-item *ngFor="let i of sidenavoptions" routerLink={{i.url}}>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-icon mat-list-icon>
+              {{i.icon}}
+            </mat-icon>
+            <span class="sn">{{i.name}}</span>
+          </div>
+        </mat-list-item>
       </mat-nav-list>
     </mat-drawer>
-    <mat-drawer-content>
-      Main content
-    </mat-drawer-content>
+    <router-outlet></router-outlet>
   </mat-drawer-container>
 </div>

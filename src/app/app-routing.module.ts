@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './core/Components/navbar/navbar.component';
-import { DashboardComponent } from './core/Components/dashboard/dashboard.component';
+import { DashboarddComponent } from './core/Components/dashboardd/dashboardd.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'app', pathMatch: 'full'},
+  {path: '', redirectTo: 'app/dash', pathMatch: 'full'},
   {path: 'app', component: NavbarComponent, children: [
-    {path: 'dash',component: DashboardComponent},
+    {path: 'dash', component: DashboarddComponent},
   ]}
 ];
 
