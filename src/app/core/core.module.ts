@@ -16,7 +16,7 @@ import { CarouselComponent } from './Components/carousel/carousel.component';
 @NgModule({
   declarations: [
     NavbarComponent,
-    DashboardComponent
+    DashboarddComponent
   ],
   imports: [
     CommonModule,
