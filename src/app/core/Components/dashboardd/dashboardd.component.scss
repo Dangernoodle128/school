@@ -12,8 +12,8 @@
 
 .more-button {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
 }
 
 .dashboard-card-content {
@@ -62,4 +62,16 @@
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.forum{
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+}
+
+.mat-dialog-container {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

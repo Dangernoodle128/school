@@ -7,7 +7,6 @@
           <mat-card class="dashboard-card">
             <mat-card-header>
               <mat-card-title>
-                <!-- {{card.title}} -->
                 <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
                   <mat-icon>more_vert</mat-icon>
                 </button>
@@ -22,81 +21,34 @@
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="1">
-          <mat-card class="dashboard-card">
-            <mat-card-header>
-              <mat-card-title>
-                <!-- {{card.title}} -->
-                <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu" xPosition="before">
-                  <button mat-menu-item>Expand</button>
-                  <button mat-menu-item>Remove</button>
-                </mat-menu>
+        <ng-container *ngFor="let comm of results; let i = index">
+          <mat-grid-tile colspan="1" rowspan="1">
+            <mat-card class="dashboard-card">
+              <mat-card-header>
+                <mat-card-title>
               </mat-card-title>
             </mat-card-header>
             <mat-card-content class="dashboard-card-content">
-              <div>
-                <div fxLayout="column" fxFlex="40%">
-                  <div fxLayout="column">
-                    <h3>Comments</h3>
-                    <mat-form-field appearance="outline">
-                      <input class="inp" matInput [(ngModel)]="comm" />
-                    </mat-form-field>
-                    <div fxLayout="row" fxLayoutAlign="end end">
-                      <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
-                    </div>
-                  </div><br>
-                  <ng-container *ngFor="let it of results; let i = index">
-                    <div fxLayout="column" class="cmt-container">
-                      <div>
-                        <strong>Arockya </strong>
-                        <span>{{ currentDateTime | date:'medium' }}</span>
-                      </div>
-                      <p>{{it.content}}</p>
-                      <ng-container *ngFor="let rep of it.reply">
-                        <div fxLayout="column" class="reply">
-                          <div>
-                            <strong>Arockya </strong>
-                            <span>{{ currentDateTime | date:'medium' }}</span>
-                          </div>
-                          <p>{{rep.content}}</p>
-                        </div>
-                      </ng-container>
-                      <button mat-raised-button class="button" (click)="Onshow()">Reply</button>
-                      <div fxLayout="row" *ngIf="show">
-                        <mat-form-field appearance="outline">
-                          <input matInput [(ngModel)]="rep[i]" />
-                        </mat-form-field>
-                        <button mat-raised-button (click)="onReplay(i)">Submit</button>
-                      </div>
-                      <mat-divider></mat-divider>
-                    </div><br>
-                  </ng-container>
-                </div>
-              </div>
+              <h2>Comments</h2>
+              <p>{{comm.content}}</p>
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
+      </ng-container>
       </mat-grid-list>
     </div>
 
     <div fxFlex="35%">
       <mat-grid-list cols="1" rowHeight="350px" cdkDropList (cdkDropListDropped)="drop($event)" class="example-list">
         <ng-container *ngFor="let item of todo"  class="example-box">
-          <mat-grid-tile colspan="1" rowspan="1" cdkDrag cdkDragDisabled="{{drag}}">
+          <mat-grid-tile colspan="1" rowspan="1" cdkDrag [cdkDragDisabled]="drag">
             <mat-card class="dashboard-card">
               <mat-card-header>
                 <mat-card-title>
                   <h3>{{item}}</h3>
-                  <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                    <mat-icon>more_vert</mat-icon>
-                  </button>
-                  <mat-menu #menu="matMenu" xPosition="before">
-                    <button mat-menu-item>Expand</button>
-                    <button mat-menu-item>Remove</button>
-                  </mat-menu>
+                  <mat-icon class="material-symbols-outlined more-button" color="accent" cdkDragHandle [fxHide]="drag">
+                    hand_bones
+                  </mat-icon>
                 </mat-card-title>
               </mat-card-header>
               <mat-card-content class="dashboard-card-content">
@@ -109,20 +61,21 @@
       </mat-grid-list>
     </div>
   </div>
-  <button mat-icon-button><mat-icon></mat-icon></button>
+  <button mat-fab color="primary" class="forum" (click)="Oncomment()">
+    <mat-icon>forum</mat-icon>
+  </button>
 </div>
 
 <ng-template #post>
-  <h1 mat-dialog-title>Start a Discussion</h1>
+  <h1 mat-dialog-title>Share a Reply</h1><br>
   <div mat-dialog-content>
-    <p>What's your favorite animal?</p>
     <mat-form-field appearance="outline">
-      <mat-label>Add a discussion..</mat-label>
-      <textarea matInput [(ngModel)]="value"></textarea>
+      <mat-label>Add a Comment..</mat-label>
+      <textarea matInput [(ngModel)]="comm"></textarea>
     </mat-form-field>
   </div>
   <div mat-dialog-actions align="center">
-    <button mat-button [mat-dialog-close]="true">Ok</button>
-    <button mat-button>No Thanks</button>
-  </div>
+    <button mat-raised-button [mat-dialog-close]="true">Cancel</button>
+    <button mat-raised-button color="primary" (click)="OnSubComment()" [mat-dialog-close]="true">Submit</button>
+  </div><br>
 </ng-template>

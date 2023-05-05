@@ -16,6 +16,10 @@ export interface sidenav {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+
+  clicked = true;
+  clr!: string;
+
   constructor(private mediaObserver: MediaObserver, private dragservice: DragService) {}
   sidenavoptions : sidenav[] = [
     {name : "Table" ,url : "/main/table" ,icon : "table_view"},
@@ -52,10 +56,14 @@ export class NavbarComponent {
   ngOnDestroy(): void {
     this.mediaSubscription.unsubscribe();
   }
-  Onedit(){
-    this.dragservice.changeMode('false');
-  }
-  Onfix(){
-    this.dragservice.changeMode('true');
+
+  onTouch() {
+    this.clicked = !this.clicked;
+    this.dragservice.changeMode(this.clicked);
+    if(this.clicked){
+      this.clr = 'none';
+    } else {
+      this.clr = 'accent';
+    }
   }
  }

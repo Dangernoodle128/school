@@ -44,3 +44,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   'GRAD' 0,
   'opsz' 48
 }
+
+.mat-mdc-fab.mat-primary, .mat-mdc-mini-fab.mat-primary {
+  --mdc-fab-container-color: #3fb696;
+  --mdc-fab-icon-color: #fff;
+  --mat-mdc-fab-color: #fff;
+}

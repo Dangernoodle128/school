@@ -4,11 +4,11 @@
     <span class="example-spacer"></span>
     <span>School</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="dragg"><mat-icon>settings</mat-icon></button>
-    <mat-menu #dragg="matMenu" xPosition="before">
-      <button mat-menu-item (click)="Onedit()">Edit</button>
-      <button mat-menu-item (click)="Onfix()">Fix this</button>
-    </mat-menu>
+    <button mat-icon-button (click)="onTouch()" [color]="clr">
+      <span class="material-symbols-outlined">
+        design_services
+        </span>
+    </button>
     <button mat-icon-button [matMenuTriggerFor]="log"><mat-icon>account_circle</mat-icon></button>
     <mat-menu #log="matMenu" xPosition="before">
       <button mat-menu-item>Logout</button>
