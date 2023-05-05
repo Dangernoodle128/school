@@ -15,9 +15,12 @@ interface Comment {
 })
 
 export class DashboarddComponent {
+  v = 0 ;
   value !: string;
   comm !: string;
   results: Comment[] = [];
+  currentDateTime: Date = new Date();
+
   constructor(private dragservice :DragService,private dialog :MatDialog) {}
   @ViewChild('post') post !: TemplateRef<any>;
   drag! : boolean;
@@ -42,5 +45,11 @@ export class DashboarddComponent {
   OnSubComment(){
       this.results.push({content: this.comm, reply: []})
       this.comm = " ";
+  }
+  Onupvote(){
+    this.v++;
+  }
+  Ondownvote(){
+    this.v--;
   }
 }
