@@ -2,6 +2,7 @@ import { Component, SimpleChanges, ViewChild } from '@angular/core';
 import { MediaObserver } from '@angular/flex-layout';
 import { MatDrawer, MatDrawerMode } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
+import { DragService } from 'src/app/shared/Services/drag.service';
 
 export interface sidenav {
   name : string;
@@ -15,20 +16,19 @@ export interface sidenav {
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
+  constructor(private mediaObserver: MediaObserver, private dragservice: DragService) {}
   sidenavoptions : sidenav[] = [
     {name : "Table" ,url : "/main/table" ,icon : "table_view"},
-    {name : "Form" ,url : "/main/form" ,icon : "dashboard"},
-    {name : "Dialog" ,url : "/main/dialog" ,icon : "rectangle"},
-    {name : "SnackBar" ,url : "/main/snackbar" ,icon : "dns"},
+    // {name : "Form" ,url : "/main/form" ,icon : "dashboard"},
+    // {name : "Dialog" ,url : "/main/dialog" ,icon : "rectangle"},
+    // {name : "SnackBar" ,url : "/main/snackbar" ,icon : "dns"},
     {name : "Life-Cycle-Hooks" ,url : "/main/lifecycle" ,icon : "cached" },
-    {name : "Practice" ,url : "/main/parent" ,icon : "pan_tool"},
+    // {name : "Practice" ,url : "/main/parent" ,icon : "pan_tool"},
   ]
 
   @ViewChild("drawer") drawer !: MatDrawer;
   mode : MatDrawerMode = "side";
 
-  constructor(private mediaObserver: MediaObserver) {}
   private mediaSubscription!: Subscription;
   private activeMediaQuery = '';
   ngOnInit(changes: SimpleChanges): void {
@@ -51,5 +51,11 @@ export class NavbarComponent {
   }
   ngOnDestroy(): void {
     this.mediaSubscription.unsubscribe();
+  }
+  Onedit(){
+    this.dragservice.changeMode('false');
+  }
+  Onfix(){
+    this.dragservice.changeMode('true');
   }
  }

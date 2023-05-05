@@ -2,9 +2,18 @@
   <mat-toolbar class="toolbar" color="primary">
     <button mat-button (click)="drawer.toggle()"><mat-icon>list</mat-icon></button>
     <span class="example-spacer"></span>
-    <span>Revision</span>
+    <span>School</span>
     <span class="example-spacer"></span>
-    <button mat-button><mat-icon>logout</mat-icon></button>
+    <button mat-icon-button [matMenuTriggerFor]="dragg"><mat-icon>settings</mat-icon></button>
+    <mat-menu #dragg="matMenu" xPosition="before">
+      <button mat-menu-item (click)="Onedit()">Edit</button>
+      <button mat-menu-item (click)="Onfix()">Fix this</button>
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="log"><mat-icon>account_circle</mat-icon></button>
+    <mat-menu #log="matMenu" xPosition="before">
+      <button mat-menu-item>Logout</button>
+      <button mat-menu-item>Change password</button>
+    </mat-menu>
   </mat-toolbar>
   <mat-drawer-container class="example-container" fixedviewport="true" autosize>
     <mat-drawer #drawer fxLayout="column" [mode]='mode' opened="true">
