@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CarouselComponent } from './Components/carousel/carousel.component';
 
 
@@ -16,7 +17,8 @@ import { CarouselComponent } from './Components/carousel/carousel.component';
 @NgModule({
   declarations: [
     NavbarComponent,
-    DashboarddComponent
+    DashboarddComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,9 @@ import { CarouselComponent } from './Components/carousel/carousel.component';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    DragDropModule,
+
   ]
 })
 export class CoreModule { }
